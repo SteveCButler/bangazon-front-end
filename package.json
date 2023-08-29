@@ -1,8 +1,8 @@
 {
-  "name": "next-firebase-starter",
+  "name": "bangazon-front-end",
   "private": true,
   "version": "1.0.0",
-  "author": "Trinity Christiana",
+  "author": "Steve Butler",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
