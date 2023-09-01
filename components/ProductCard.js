@@ -1,8 +1,8 @@
 // import Link from 'next/link';
 import Card from 'react-bootstrap/Card';
-// import Button from 'react-bootstrap/Button';
+import Button from 'react-bootstrap/Button';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
-// import { deleteMember } from '../api/memberData';
 
 const MemberCard = ({ obj }) => {
   // const deleteThisMember = () => {
@@ -11,13 +11,11 @@ const MemberCard = ({ obj }) => {
   //   }
   // };
 
-  console.warn('OBJ: ', obj);
-
   const styles = {
     card: {
       backgroundColor: '#eee',
-      borderRadius: 20,
-      padding: '1rem',
+      borderRadius: 10,
+      padding: '.75rem',
       width: '18rem',
     },
     cardImage: {
@@ -33,20 +31,20 @@ const MemberCard = ({ obj }) => {
       <Card.Body className="fw-semibold">
         <Card.Text className="fs-4 text-center">{obj.productName}</Card.Text>
         <Card.Text className="fs-6">Product Type: {obj.productTypeName}</Card.Text>
-        <Card.Text className="h5">Price: ${obj.productPrice}</Card.Text>
+        <Card.Text className="fs-6">Price: ${obj.productPrice}</Card.Text>
         <Card.Text className="mb-1"> Description:</Card.Text>
         <Card.Text> {obj.productDescription}</Card.Text>
       </Card.Body>
-      {/* <Card.Footer>
-        <Link href={`/members/edit/${obj.firebaseKey}`} passHref>
+      <Card.Footer>
+        <Link href={`/products/${obj.id}`} passHref>
           <Button variant="info" className="btn-sm">
-            EDIT
+            Details
           </Button>
         </Link>
-        <Button variant="danger" className="m-2 btn-sm" onClick={deleteThisMember}>
+        {/* <Button variant="danger" className="m-2 btn-sm" onClick={}>
           DELETE
-        </Button>
-      </Card.Footer> */}
+        </Button> */}
+      </Card.Footer>
     </Card>
   );
 };
@@ -55,6 +53,7 @@ export default MemberCard;
 
 MemberCard.propTypes = {
   obj: PropTypes.shape({
+    id: PropTypes.number,
     productName: PropTypes.string,
     productDescription: PropTypes.string,
     productPrice: PropTypes.number,
