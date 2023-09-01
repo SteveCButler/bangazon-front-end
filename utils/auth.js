@@ -1,11 +1,10 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
-import { clientCredentials } from './client';
+// import { clientCredentials } from './client';
 
-console.warn('ClientCreds: ', clientCredentials);
+const dbUrl = 'https://localhost:7040';
 
 const checkUser = (uid) => new Promise((resolve, reject) => {
-  console.warn('UID: ', uid);
   fetch(`https://localhost:7040/api/checkuser/${uid}`, {
     method: 'GET',
     headers: {
@@ -14,11 +13,32 @@ const checkUser = (uid) => new Promise((resolve, reject) => {
     },
   })
     .then((resp) => {
-      console.warn('Resp: ', resp);
-      resolve(resp.json());
+      if (resp.status === 204) {
+        resolve({});
+      } else {
+        resolve(resp.json());
+      }
     })
     .catch(reject);
 });
+
+// const checkUser = (uid) => new Promise((resolve, reject) => {
+//   fetch(`${dbUrl}/api/checkuser/${uid}`, {
+//     method: 'GET',
+//     headers: {
+//       'Content-Type': 'application/json',
+//       Accept: 'application/json',
+//     },
+//   })
+//     .then(async (res) => {
+//       let data;
+//       if (res.ok) {
+//         data = await res.json();
+//         resolve(data);
+//       }
+//     })
+//     .catch(reject);
+// });
 
 // const checkUser = (uid) => new Promise((resolve, reject) => {
 //   fetch(`${clientCredentials.databaseURL}/checkuser`, {
@@ -36,7 +56,7 @@ const checkUser = (uid) => new Promise((resolve, reject) => {
 // });
 
 const registerUser = (userInfo) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/register`, {
+  fetch(`${dbUrl}/api/user`, {
     method: 'POST',
     body: JSON.stringify(userInfo),
     headers: {
@@ -58,7 +78,7 @@ const signOut = () => {
 };
 
 export {
-  signIn, //
+  signIn,
   signOut,
   checkUser,
   registerUser,
