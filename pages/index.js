@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import Link from 'next/link';
-import { checkUser, signOut } from '../utils/auth';
+import { checkUser } from '../utils/auth';
 import { useAuth } from '../utils/context/authContext';
 import RegisterForm from '../components/RegisterForm';
 import Products from './products';
